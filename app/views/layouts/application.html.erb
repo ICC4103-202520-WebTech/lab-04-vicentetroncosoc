@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Lab3" %></title>
+    <title><%= content_for(:title) || "Lab4" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -23,6 +23,18 @@
   </head>
 
   <body>
+
+  
+  <div class="container">
+    <nav class="topnav">
+      <%= link_to "Rooms", rooms_path %> |
+      <%= link_to "Guests", guests_path %> |
+      <%= link_to "Reservations", reservations_path %> |
+      <%= link_to "Services", services_path %>
+    </nav>
+
+
+
     <%= yield %>
   </body>
 </html>

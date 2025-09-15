@@ -1,0 +1,19 @@
+<h1>Reservations</h1>
+
+<% cols = Reservation.column_names - %w[created_at updated_at] %>
+<table>
+  <thead>
+    <tr>
+      <% cols.each { |c| %><th><%= c.titleize %></th><% } %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <% cols.each { |c| %><td><%= reservation.public_send(c) %></td><% } %>
+        <td><%= link_to "Show", reservation_path(reservation) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

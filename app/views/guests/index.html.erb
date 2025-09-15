@@ -1,0 +1,19 @@
+<h1>Guests</h1>
+
+<% cols = Guest.column_names - %w[created_at updated_at] %>
+<table>
+  <thead>
+    <tr>
+      <% cols.each { |c| %><th><%= c.titleize %></th><% } %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @guests.each do |guest| %>
+      <tr>
+        <% cols.each { |c| %><td><%= guest.public_send(c) %></td><% } %>
+        <td><%= link_to "Show", guest_path(guest) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

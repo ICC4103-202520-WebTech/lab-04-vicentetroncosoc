@@ -1,0 +1,11 @@
+<h1>Guest Details</h1>
+
+<% cols = Guest.column_names - %w[created_at updated_at] %>
+<dl>
+  <% cols.each do |c| %>
+    <dt><%= c.titleize %></dt>
+    <dd><%= @guest.public_send(c) %></dd>
+  <% end %>
+</dl>
+
+<p><%= link_to "← Back to Guests", guests_path %></p>

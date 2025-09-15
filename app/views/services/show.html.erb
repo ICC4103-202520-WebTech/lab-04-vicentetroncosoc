@@ -1,0 +1,11 @@
+<h1>Service Details</h1>
+
+<% cols = Service.column_names - %w[created_at updated_at] %>
+<dl>
+  <% cols.each do |c| %>
+    <dt><%= c.titleize %></dt>
+    <dd><%= @service.public_send(c) %></dd>
+  <% end %>
+</dl>
+
+<p><%= link_to "← Back to Services", services_path %></p>

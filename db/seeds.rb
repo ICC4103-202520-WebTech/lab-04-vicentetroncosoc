@@ -1,16 +1,10 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
-
 # Limpieza de datos (opcional pero recomendado en desarrollo)
-# Lo puse porque me cambiaba el id caa vez que corrian las seed
+
+
+# Lo puse porque me cambiaba el id cada vez que corrían las seeds
 [Room, Guest, Reservation, Service, ServiceUsage, Invoice].each do |model|
   model.delete_all
   ActiveRecord::Base.connection.reset_pk_sequence!(model.table_name)
@@ -19,18 +13,18 @@ end
 # CREAMOS SEEDS PARA LAS HABITACIONES - TABLA ROOM
 # room_type: 0 = single, 1 = double, 2 = suite
 # status: 0 = available, 1 = occupied, 2 = maintenance, 3 = cleaning
-Room.create(number: "100", room_type: 2, price: 200000, status: 0)
-Room.create(number: "101", room_type: 2, price: 200000, status: 1)
-Room.create(number: "102", room_type: 0, price: 80000, status: 2)
-Room.create(number: "103", room_type: 0, price: 80000, status: 0)
-Room.create(number: "104", room_type: 0, price: 80000, status: 0)
-Room.create(number: "105", room_type: 0, price: 80000, status: 0)
-Room.create(number: "106", room_type: 0, price: 80000, status: 3)
-Room.create(number: "107", room_type: 1, price: 150000, status: 1)
-Room.create(number: "108", room_type: 1, price: 150000, status: 2)
-Room.create(number: "109", room_type: 1, price: 150000, status: 0)
-Room.create(number: "110", room_type: 1, price: 150000, status: 0)
-Room.create(number: "310", room_type: 2, price: 300000, status: 0)
+Room.create!(number: "100", room_type: 2, price: 200000, status: 0)
+Room.create!(number: "101", room_type: 2, price: 200000, status: 1)
+Room.create!(number: "102", room_type: 0, price: 80000, status: 2)
+Room.create!(number: "103", room_type: 0, price: 80000, status: 0)
+Room.create!(number: "104", room_type: 0, price: 80000, status: 0)
+Room.create!(number: "105", room_type: 0, price: 80000, status: 0)
+Room.create!(number: "106", room_type: 0, price: 80000, status: 3)
+Room.create!(number: "107", room_type: 1, price: 150000, status: 1)
+Room.create!(number: "108", room_type: 1, price: 150000, status: 2)
+Room.create!(number: "109", room_type: 1, price: 150000, status: 0)
+Room.create!(number: "110", room_type: 1, price: 150000, status: 0)
+Room.create!(number: "310", room_type: 2, price: 300000, status: 0)
 
 Guest.create!([
   { first_name: "Ana", last_name: "Pérez", email: "ana@example.com", phone: "+56911111111", document_id: "12.345.678-9" },
@@ -77,7 +71,6 @@ Reservation.create!([
   }
 ])
 
-
 # -----------------------------
 # Services de ejemplo
 # -----------------------------
@@ -88,9 +81,9 @@ Service.create!([
   { name: "Jacuzzi Privado", price: 15000, is_active: false } # ejemplo desactivado
 ])
 
-# # -----------------------------
-# # ServiceUsage
-# # -----------------------------
+# -----------------------------
+# ServiceUsage
+# -----------------------------
 ServiceUsage.create!([
   {
     reservation_id: 1,      # RSV-2025-0001
@@ -108,7 +101,7 @@ ServiceUsage.create!([
   },
   {
     reservation_id: 3,      # RSV-2025-0003
-    service_id: 4,          # Piscina
+    service_id: 4,          # Jacuzzi Privado
     quantity: 1,
     used_at: DateTime.new(2025, 9, 20, 15, 00),
     note: "Acceso por un día"

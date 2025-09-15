@@ -1,0 +1,11 @@
+<h1>Room Details</h1>
+
+<% cols = Room.column_names - %w[created_at updated_at] %>
+<dl>
+  <% cols.each do |c| %>
+    <dt><%= c.titleize %></dt>
+    <dd><%= @room.public_send(c) %></dd>
+  <% end %>
+</dl>
+
+<p><%= link_to "← Back to Rooms", rooms_path %></p>

@@ -1,0 +1,11 @@
+<h1>Reservation Details</h1>
+
+<% cols = Reservation.column_names - %w[created_at updated_at] %>
+<dl>
+  <% cols.each do |c| %>
+    <dt><%= c.titleize %></dt>
+    <dd><%= @reservation.public_send(c) %></dd>
+  <% end %>
+</dl>
+
+<p><%= link_to "← Back to Reservations", reservations_path %></p>
